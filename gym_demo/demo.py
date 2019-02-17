@@ -25,7 +25,7 @@ from docopt import docopt
 
 def get_environment_names() -> List[Text]:
     """Return a list of names of registered Open AI Gym environments."""
-    return [spec.id for spec in gym.envs.registry.all()]
+    return sorted(spec.id for spec in gym.envs.registry.all())
 
 
 def get_space_description(space: gym.Space) -> Text:
@@ -52,7 +52,6 @@ def print_environment_description(env: gym.Env) -> None:
 def list_to_columns(strings: List[Text]) -> Text:
     """Prepare multi-column output string from a list of strings."""
     strings_in_columns = ""
-    strings = sorted(strings)
     for col1, col2, col3 in zip_longest(
         strings[::3], strings[1::3], strings[2::3], fillvalue=""
     ):
@@ -77,6 +76,8 @@ def run_environment(
     :param print_observation: should the full observed state be output to std out?
     """
     env.reset()
+    print("Running environment demonstration...")
+    print("Unique environment information is output to standard out:")
     prev_env_output = None
     for step in range(steps_count):
         observation, reward, done, info = env.step(env.action_space.sample())
