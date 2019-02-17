@@ -16,5 +16,6 @@ setup(
     url="https://github.com/postrational/gym-demo",
     packages=["gym_demo"],
     install_requires=["setuptools", "gym", "docopt"],
+    setup_requires=["pytest-runner"],
     entry_points={"console_scripts": ["gym-demo = gym_demo.demo:main"]},
 )
