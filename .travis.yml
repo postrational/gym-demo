@@ -15,11 +15,9 @@ matrix:
     sudo: false
     python: '3.6'
   - os: osx
-    language: objective-c
-    env: PYENV_VERSION=3.5.5
+    python: '3.5'
   - os: osx
-    language: objective-c
-    env: PYENV_VERSION=3.6.5
+    python: '3.6'
 
 install:
   - pip install tox
