@@ -5,6 +5,7 @@ import pytest
 from gym_demo.demo import (
     get_environment_names,
     get_space_description,
+    group_environments,
     list_to_columns,
     print_environment_description,
     render_environment,
@@ -17,6 +18,14 @@ def test_get_environment_names():
 
     assert len(environments)
     assert "Acrobot-v1" in environments
+
+
+def test_group_environments():
+    environments = get_environment_names()
+    group_names = group_environments(environments)
+
+    assert len(group_names) <= len(environments)
+    assert "Acrobot" in group_names
 
 
 def test_get_space_description():
