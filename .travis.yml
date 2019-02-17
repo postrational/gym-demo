@@ -15,9 +15,6 @@ matrix:
     sudo: false
     python: '3.6'
   - os: osx
-    python: '3.5'
-  - os: osx
-    python: '3.6'
 
 install:
   - pip install tox
