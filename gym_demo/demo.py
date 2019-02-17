@@ -15,8 +15,8 @@ Options:
 
 """
 import re
-from time import sleep
 from itertools import zip_longest
+from time import sleep
 
 import gym
 from docopt import docopt
@@ -29,15 +29,17 @@ def get_environment_names():
 def get_space_description(space):
     description = repr(space)
     if isinstance(space, gym.spaces.Box):
-        description += "\nLow values: {}".format(space.low)
-        description += "\nHigh values: {}".format(space.high)
+        description += "\nLow values: {0}".format(space.low)
+        description += "\nHigh values: {0}".format(space.high)
     return description
 
 
 def print_environment_description(env):
-    print("Environment: {}\n".format(env.spec.id))
-    print("Observation Space: {}\n".format(get_space_description(env.observation_space)))
-    print("Action Space: ()".format(get_space_description(env.action_space)))
+    print("Environment: {0}\n".format(env.spec.id))
+    print(
+        "Observation Space: {0}\n".format(get_space_description(env.observation_space))
+    )
+    print("Action Space: {0}".format(get_space_description(env.action_space)))
     if hasattr(env.unwrapped, "get_action_meanings"):
         print("Action meanings:", env.unwrapped.get_action_meanings())
     print("\n")
@@ -49,7 +51,7 @@ def list_to_columns(strings):
     for col1, col2, col3 in zip_longest(
         strings[::3], strings[1::3], strings[2::3], fillvalue=""
     ):
-        strings_in_columns += "{:<50}{:<50}{:<}\n".format(col1, col2, col3)
+        strings_in_columns += "{0:<50}{1:<50}{2:<}\n".format(col1, col2, col3)
     return strings_in_columns
 
 
@@ -64,11 +66,11 @@ def run_environment(env, steps_count, render=True, print_observation=False):
             sleep(0.01)
 
         if (reward, done, info) != prev_env_output:
-            print("Reward: {}, Done: {}, Info: {}".format(reward, done, info))
+            print("Reward: {0}, Done: {1}, Info: {2}".format(reward, done, info))
             prev_env_output = (reward, done, info)
 
         if print_observation:
-            print("Observation: {}".format(observation))
+            print("Observation: {0}".format(observation))
 
         if done:
             break
@@ -79,7 +81,7 @@ def run_environment(env, steps_count, render=True, print_observation=False):
 def main():
     environment_names = get_environment_names()
 
-    help_string = "{}\n\nAvailable environments:\n\n{}".format(
+    help_string = "{0}\n\nAvailable environments:\n\n{1}".format(
         __doc__, list_to_columns(environment_names)
     )
     arguments = docopt(help_string)
@@ -96,7 +98,7 @@ def main():
 
     else:
         print("ERROR: Environment with requested ID not found.")
-        regex = re.compile(".*{}.*".format(env_name), re.IGNORECASE)
+        regex = re.compile(".*{0}.*".format(env_name), re.IGNORECASE)
         environment_names = [
             spec.id for spec in gym.envs.registry.all() if regex.match(spec.id)
         ]

@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+"""
+Setup script for gym-demo.
+
+https://github.com/postrational/gym-demo"
+"""
 
 from setuptools import setup
 
