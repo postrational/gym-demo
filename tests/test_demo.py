@@ -6,8 +6,8 @@ from gym_demo.demo import (
     get_space_description,
     list_to_columns,
     print_environment_description,
-    run_environment,
     render_environment,
+    run_environment,
 )
 
 
