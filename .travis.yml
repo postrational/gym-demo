@@ -15,7 +15,7 @@ matrix:
     sudo: false
     python: '3.6'
   - os: osx
-    osx_image: xcode10.1
+    language: objective-c
 
 install:
   - pip install tox
