@@ -7,7 +7,8 @@ from gym_demo.demo import (
     list_to_columns,
     print_environment_description,
     run_environment,
-    render_environment)
+    render_environment,
+)
 
 
 def test_get_environment_names():
@@ -51,7 +52,7 @@ def test_run_environment(capsys):
 
 def test_render_environment(monkeypatch):
     environment = gym.make("Acrobot-v1")
-    monkeypatch.setattr(environment, 'render', lambda: True)
+    monkeypatch.setattr(environment, "render", lambda: True)
     success = render_environment(environment)
     assert success is True
 
