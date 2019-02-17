@@ -59,6 +59,19 @@ def list_to_columns(strings: List[Text]) -> Text:
     return strings_in_columns
 
 
+def render_environment(env: gym.Env) -> bool:
+    """Graphically render state of environment.
+
+    Return true if rendering was successful, false otherwise.
+    """
+    try:
+        env.render()
+        sleep(0.01)
+        return True
+    except NotImplementedError:
+        return False
+
+
 def run_environment(
     env: gym.Env,
     steps_count: int = 1000,
@@ -79,12 +92,11 @@ def run_environment(
     print("Running environment demonstration...")
     print("Unique environment information is output to standard out:")
     prev_env_output = None
-    for step in range(steps_count):
+    for _ in range(steps_count):
         observation, reward, done, info = env.step(env.action_space.sample())
 
         if render:
-            env.render()
-            sleep(0.01)
+            render = render_environment(env)
 
         if (reward, done, info) != prev_env_output:
             print("Reward: {0}, Done: {1}, Info: {2}".format(reward, done, info))

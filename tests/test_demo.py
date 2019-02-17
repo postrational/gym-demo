@@ -6,6 +6,7 @@ from gym_demo.demo import (
     get_space_description,
     list_to_columns,
     print_environment_description,
+    render_environment,
     run_environment,
 )
 
@@ -47,3 +48,14 @@ def test_run_environment(capsys):
 
     captured = capsys.readouterr()
     assert "Reward: -1.0" in captured.out
+
+
+def test_render_environment(monkeypatch):
+    environment = gym.make("Acrobot-v1")
+    monkeypatch.setattr(environment, "render", lambda: True)
+    success = render_environment(environment)
+    assert success is True
+
+    environment = gym.make("Roulette-v0")
+    success = render_environment(environment)
+    assert success is False
