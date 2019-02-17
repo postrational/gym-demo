@@ -1,0 +1,16 @@
+language: python
+
+git:
+  depth: false
+
+matrix:
+  include:
+  - os: linux
+  - os: osx
+
+script:
+- tox
+
+branches:
+  only:
+  - "master"
