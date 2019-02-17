@@ -17,16 +17,19 @@ Options:
 import re
 from itertools import zip_longest
 from time import sleep
+from typing import List, Text
 
 import gym
 from docopt import docopt
 
 
-def get_environment_names():
+def get_environment_names() -> List[Text]:
+    """Return a list of names of registered Open AI Gym environments."""
     return [spec.id for spec in gym.envs.registry.all()]
 
 
-def get_space_description(space):
+def get_space_description(space: gym.Space) -> Text:
+    """Return a textual description of gym.Space object."""
     description = repr(space)
     if isinstance(space, gym.spaces.Box):
         description += "\nLow values: {0}".format(space.low)
@@ -34,7 +37,8 @@ def get_space_description(space):
     return description
 
 
-def print_environment_description(env):
+def print_environment_description(env: gym.Env) -> None:
+    """Output the Gym environment description to standard out."""
     print("Environment: {0}\n".format(env.spec.id))
     print(
         "Observation Space: {0}\n".format(get_space_description(env.observation_space))
@@ -45,7 +49,8 @@ def print_environment_description(env):
     print("\n")
 
 
-def list_to_columns(strings):
+def list_to_columns(strings: List[Text]) -> Text:
+    """Prepare multi-column output string from a list of strings."""
     strings_in_columns = ""
     strings = sorted(strings)
     for col1, col2, col3 in zip_longest(
@@ -55,7 +60,22 @@ def list_to_columns(strings):
     return strings_in_columns
 
 
-def run_environment(env, steps_count, render=True, print_observation=False):
+def run_environment(
+    env: gym.Env,
+    steps_count: int = 1000,
+    render: bool = True,
+    print_observation: bool = False,
+) -> None:
+    """Execute main environment run loop.
+
+    Renders environment state graphically and outputs environment information to
+    standard out.
+
+    :param env: the environment to run
+    :param steps_count: how many steps to run for?
+    :param render: should the environment be rendered graphically?
+    :param print_observation: should the full observed state be output to std out?
+    """
     env.reset()
     prev_env_output = None
     for step in range(steps_count):
@@ -78,7 +98,8 @@ def run_environment(env, steps_count, render=True, print_observation=False):
     env.close()
 
 
-def main():
+def main() -> None:
+    """Process script argument and run."""
     environment_names = get_environment_names()
 
     help_string = "{0}\n\nAvailable environments:\n\n{1}".format(
