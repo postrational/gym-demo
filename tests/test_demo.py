@@ -1,5 +1,6 @@
 """Test suite for gym-demo."""
 import gym
+import pytest
 
 from gym_demo.demo import (
     get_environment_names,
@@ -50,6 +51,7 @@ def test_run_environment(capsys):
     assert "Reward: -1.0" in captured.out
 
 
+@pytest.mark.filterwarnings("ignore: numpy.ufunc size changed")
 def test_render_environment(monkeypatch):
     environment = gym.make("Acrobot-v1")
     monkeypatch.setattr(environment, "render", lambda: True)
