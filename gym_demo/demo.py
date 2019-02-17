@@ -28,6 +28,16 @@ def get_environment_names() -> List[Text]:
     return sorted(spec.id for spec in gym.envs.registry.all())
 
 
+def group_environments(env_names: List[Text]) -> List[Text]:
+    """Group a sorted list of environment names into families."""
+    names_without_version = [name.split("-")[0] for name in env_names]
+    family_names = [names_without_version.pop(0)]
+    for name in names_without_version:
+        if not family_names[-1] in name:
+            family_names.append(name)
+    return family_names
+
+
 def get_space_description(space: gym.Space) -> Text:
     """Return a textual description of gym.Space object."""
     description = repr(space)
@@ -114,9 +124,10 @@ def run_environment(
 def main() -> None:
     """Process script argument and run."""
     environment_names = get_environment_names()
+    environment_families = group_environments(environment_names)
 
     help_string = "{0}\n\nAvailable environments:\n\n{1}".format(
-        __doc__, list_to_columns(environment_names)
+        __doc__, list_to_columns(environment_families)
     )
     arguments = docopt(help_string)
 
