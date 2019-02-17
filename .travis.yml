@@ -7,11 +7,9 @@ matrix:
   include:
   - os: linux
     python:
-    - "3.6"
     - "3.7"
   - os: osx
     python:
-    - "3.6"
     - "3.7"
 
 install:
