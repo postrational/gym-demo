@@ -4,4 +4,84 @@
 
 # gym-demo
 
-Explore OpenAI Gym environments
+##### Explore OpenAI Gym environments
+
+This package provides the `gym-demo` command, which allows you to
+explore the various [Open AI gym ][gym] environments installed on your
+system.
+
+This allows you to get a quick overview of an environment before you
+start working on it. You will get information about the environments
+*observation space*, *action space* as well as the *rewards* you can
+expect to get and other available information.
+
+### Installation
+
+Install OpenAI Gym and `gym-demo`:
+
+
+    $ pip install gym[atari]
+    $ pip install gym-demo
+
+
+### Usage
+
+    $ gym-demo --help
+
+adasd
+
+    $ gym-demo SpaceInvaders-ram-v4
+    Environment: SpaceInvaders-ram-v4
+
+    Observation Space: Box(128,)
+    Low values:
+    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+    High values:
+    [255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255
+     255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255
+     255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255
+     255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255
+     255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255
+     255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255
+     255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255
+     255 255]
+
+    Action Space: Discrete(6)
+    Action meanings: ['NOOP', 'FIRE', 'RIGHT', 'LEFT', 'RIGHTFIRE', 'LEFTFIRE']
+
+
+    Running environment demonstration...
+    Unique environment information is output to standard out:
+    Reward: 0.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 5.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 10.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 15.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 20.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 25.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 3}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 2}
+    Reward: 30.0, Done: False, Info: {'ale.lives': 2}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 2}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 5.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 10.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 15.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 20.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 0.0, Done: False, Info: {'ale.lives': 1}
+    Reward: 0.0, Done: True, Info: {'ale.lives': 0}
+
+
+
+[gym_docs]: https://gym.openai.com/docs/ "OpenAI Gym Documentation"
+[gym_site]: https://gym.openai.com/ "OpenAI Gym"
+[gym]: https://github.com/openai/gym "OpenAI Gym GitHub"
