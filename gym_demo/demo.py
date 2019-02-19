@@ -14,7 +14,9 @@ Options:
   --observations    Print environment observations.
 
 """
+import math
 import re
+import shutil
 from itertools import zip_longest
 from time import sleep
 from typing import List, Text
@@ -42,8 +44,8 @@ def get_space_description(space: gym.Space) -> Text:
     """Return a textual description of gym.Space object."""
     description = repr(space)
     if isinstance(space, gym.spaces.Box):
-        description += "\nLow values: {0}".format(space.low)
-        description += "\nHigh values: {0}".format(space.high)
+        description += "\nLow values:\n{0}".format(space.low)
+        description += "\nHigh values:\n{0}".format(space.high)
     return description
 
 
@@ -61,11 +63,21 @@ def print_environment_description(env: gym.Env) -> None:
 
 def list_to_columns(strings: List[Text]) -> Text:
     """Prepare multi-column output string from a list of strings."""
+    terminal_width = shutil.get_terminal_size((80, 20)).columns
+    max_string_width = max(len(string) for string in strings)
+    margin = 3
+    col_width = max_string_width + margin
+    num_cols = int(terminal_width / col_width)
+    col_height = math.ceil(len(strings)/num_cols)
+    cols = [strings[i:i + col_height] for i in range(0, len(strings), col_height)]
+
+    format_string = "{:<}\n"
+    for _ in range(num_cols-1):
+        format_string = "{{:<{}}}{}".format(col_width, format_string)
+
     strings_in_columns = ""
-    for col1, col2, col3 in zip_longest(
-        strings[::3], strings[1::3], strings[2::3], fillvalue=""
-    ):
-        strings_in_columns += "{0:<50}{1:<50}{2:<}\n".format(col1, col2, col3)
+    for col_strings in zip_longest(*cols, fillvalue=""):
+        strings_in_columns += format_string.format(*col_strings)
     return strings_in_columns
 
 
@@ -76,7 +88,7 @@ def render_environment(env: gym.Env) -> bool:
     """
     try:
         env.render()
-        sleep(0.01)
+        sleep(0.02)
         return True
     except NotImplementedError:
         return False
