@@ -3,12 +3,12 @@
 import math
 import shutil
 from itertools import zip_longest
-from typing import List, Text
+from typing import List, Text, Tuple
 
 COLUMN_MARGIN = 3
 
 
-def get_columns_count_and_width(strings: List[Text]) -> (int, int):
+def get_columns_count_and_width(strings: List[Text]) -> Tuple[int, int]:
     """Calculate the optimal width and number of columns to display a list of strings.
 
     :param strings: list of strings
@@ -31,9 +31,9 @@ def list_to_columns(strings: List[Text]) -> Text:
     col_height = math.ceil(len(strings) / num_cols)
     cols = [strings[i : i + col_height] for i in range(0, len(strings), col_height)]
 
-    format_string = "{:<}\n"
+    format_string = "{:<}\n"  # noqa
     for _ in range(num_cols - 1):
-        format_string = "{{:<{}}}{}".format(col_width, format_string)
+        format_string = "{{:<{0}}}{1}".format(col_width, format_string)
 
     strings_in_columns = ""
     for col_strings in zip_longest(*cols, fillvalue=""):

@@ -31,7 +31,7 @@ def test_get_space_description():
     environment = gym.make("Acrobot-v1")
     description = get_space_description(environment.observation_space)
     assert "Box(6,)" in description
-    assert "Low values: [ -1" in description
+    assert "Low values:\n[ -1" in description
 
 
 def test_print_environment_description(capsys):
