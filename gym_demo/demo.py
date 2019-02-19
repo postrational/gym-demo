@@ -14,15 +14,14 @@ Options:
   --observations    Print environment observations.
 
 """
-import math
 import re
-import shutil
-from itertools import zip_longest
 from time import sleep
 from typing import List, Text
 
 import gym
 from docopt import docopt
+
+from gym_demo.formatting import list_to_columns
 
 
 def get_environment_names() -> List[Text]:
@@ -59,26 +58,6 @@ def print_environment_description(env: gym.Env) -> None:
     if hasattr(env.unwrapped, "get_action_meanings"):
         print("Action meanings:", env.unwrapped.get_action_meanings())
     print("\n")
-
-
-def list_to_columns(strings: List[Text]) -> Text:
-    """Prepare multi-column output string from a list of strings."""
-    terminal_width = shutil.get_terminal_size((80, 20)).columns
-    max_string_width = max(len(string) for string in strings)
-    margin = 3
-    col_width = max_string_width + margin
-    num_cols = int(terminal_width / col_width)
-    col_height = math.ceil(len(strings)/num_cols)
-    cols = [strings[i:i + col_height] for i in range(0, len(strings), col_height)]
-
-    format_string = "{:<}\n"
-    for _ in range(num_cols-1):
-        format_string = "{{:<{}}}{}".format(col_width, format_string)
-
-    strings_in_columns = ""
-    for col_strings in zip_longest(*cols, fillvalue=""):
-        strings_in_columns += format_string.format(*col_strings)
-    return strings_in_columns
 
 
 def render_environment(env: gym.Env) -> bool:
