@@ -15,12 +15,13 @@ Options:
 
 """
 import re
-from itertools import zip_longest
 from time import sleep
 from typing import List, Text
 
 import gym
 from docopt import docopt
+
+from gym_demo.formatting import list_to_columns
 
 
 def get_environment_names() -> List[Text]:
@@ -42,8 +43,8 @@ def get_space_description(space: gym.Space) -> Text:
     """Return a textual description of gym.Space object."""
     description = repr(space)
     if isinstance(space, gym.spaces.Box):
-        description += "\nLow values: {0}".format(space.low)
-        description += "\nHigh values: {0}".format(space.high)
+        description += "\nLow values:\n{0}".format(space.low)
+        description += "\nHigh values:\n{0}".format(space.high)
     return description
 
 
@@ -59,16 +60,6 @@ def print_environment_description(env: gym.Env) -> None:
     print("\n")
 
 
-def list_to_columns(strings: List[Text]) -> Text:
-    """Prepare multi-column output string from a list of strings."""
-    strings_in_columns = ""
-    for col1, col2, col3 in zip_longest(
-        strings[::3], strings[1::3], strings[2::3], fillvalue=""
-    ):
-        strings_in_columns += "{0:<50}{1:<50}{2:<}\n".format(col1, col2, col3)
-    return strings_in_columns
-
-
 def render_environment(env: gym.Env) -> bool:
     """Graphically render state of environment.
 
@@ -76,7 +67,7 @@ def render_environment(env: gym.Env) -> bool:
     """
     try:
         env.render()
-        sleep(0.01)
+        sleep(0.02)
         return True
     except NotImplementedError:
         return False
