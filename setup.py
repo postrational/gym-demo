@@ -20,7 +20,7 @@ setup(
     author_email="github@karzyn.com",
     url="https://github.com/postrational/gym-demo",
     packages=["gym_demo"],
-    install_requires=["setuptools", "gym", "docopt"],
+    install_requires=["setuptools", "gym", "docopt", "colorful"],
     setup_requires=["pytest-runner"],
     entry_points={"console_scripts": ["gym-demo = gym_demo.demo:main"]},
 )

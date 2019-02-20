@@ -4,7 +4,11 @@ from itertools import product
 
 import pytest
 
-from gym_demo.formatting import get_columns_count_and_width, list_to_columns
+from gym_demo.formatting import (
+    get_columns_count_and_width,
+    list_to_columns,
+    print_error,
+)
 
 TerminalSize = namedtuple("terminal_size", ["columns"])
 
@@ -76,3 +80,12 @@ def test_list_to_columns(monkeypatch, env_group_names, list_size, terminal_size)
     lines = column_output.splitlines()
 
     assert len(" ".join(lines).split()) == len(env_group_names)
+
+
+def test_print_error(capsys):
+    print_error("Error message!")
+    print_error("Value:", 123)
+    captured = capsys.readouterr()
+
+    assert "Error message!" in captured.out
+    assert "Value: 123" in captured.out
