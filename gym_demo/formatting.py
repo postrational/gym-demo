@@ -3,8 +3,12 @@
 import math
 import shutil
 from itertools import zip_longest
-from typing import List, Text, Tuple
+from typing import Any, List, Text, Tuple
 
+import colorful
+from colorful import Colorful
+
+colorful.use_style("solarized")
 COLUMN_MARGIN = 3
 
 
@@ -46,3 +50,27 @@ def list_to_columns(strings: List[Text]) -> Text:
     for col_strings in zip_longest(*cols, fillvalue=""):
         strings_in_columns += format_string.format(*col_strings)
     return strings_in_columns
+
+
+def _print_colorful(color: Colorful.ColorfulStyle, *args: Any) -> None:
+    if len(args) > 1:
+        string = " ".join(str(arg) for arg in args)
+    else:
+        string = args[0]
+    print(color | string)
+
+
+def print_header(*args: Any) -> None:
+    """Print heading text to console.
+
+    A color will be used to distinguish the heading from other text.
+    """
+    _print_colorful(colorful.bold & colorful.blue, *args)
+
+
+def print_error(*args: Any) -> None:
+    """Print an error message to console.
+
+    A color will be used to distinguish the heading from other text.
+    """
+    _print_colorful(colorful.bold & colorful.red, *args)

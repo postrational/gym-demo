@@ -40,7 +40,7 @@ def test_print_environment_description(capsys):
 
     captured = capsys.readouterr()
     assert "Environment: Acrobot-v1" in captured.out
-    assert "Observation Space: Box(6,)" in captured.out
+    assert "Observation Space:\nBox(6,)" in captured.out
 
 
 def test_run_environment(capsys):
