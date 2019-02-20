@@ -15,12 +15,13 @@ Options:
 
 """
 import re
-from itertools import zip_longest
 from time import sleep
 from typing import List, Text
 
 import gym
 from docopt import docopt
+
+from gym_demo.formatting import list_to_columns, print_error, print_header
 
 
 def get_environment_names() -> List[Text]:
@@ -42,31 +43,22 @@ def get_space_description(space: gym.Space) -> Text:
     """Return a textual description of gym.Space object."""
     description = repr(space)
     if isinstance(space, gym.spaces.Box):
-        description += "\nLow values: {0}".format(space.low)
-        description += "\nHigh values: {0}".format(space.high)
+        description += "\nLow values:\n{0}".format(space.low)
+        description += "\nHigh values:\n{0}".format(space.high)
     return description
 
 
 def print_environment_description(env: gym.Env) -> None:
     """Output the Gym environment description to standard out."""
-    print("Environment: {0}\n".format(env.spec.id))
-    print(
-        "Observation Space: {0}\n".format(get_space_description(env.observation_space))
-    )
-    print("Action Space: {0}".format(get_space_description(env.action_space)))
+    print_header("Environment: {0}".format(env.spec.id))
+    print_header("\nObservation Space:")
+    print(get_space_description(env.observation_space))
+
+    print_header("\nAction Space:")
+    print(get_space_description(env.action_space))
     if hasattr(env.unwrapped, "get_action_meanings"):
         print("Action meanings:", env.unwrapped.get_action_meanings())
-    print("\n")
-
-
-def list_to_columns(strings: List[Text]) -> Text:
-    """Prepare multi-column output string from a list of strings."""
-    strings_in_columns = ""
-    for col1, col2, col3 in zip_longest(
-        strings[::3], strings[1::3], strings[2::3], fillvalue=""
-    ):
-        strings_in_columns += "{0:<50}{1:<50}{2:<}\n".format(col1, col2, col3)
-    return strings_in_columns
+    print("")
 
 
 def render_environment(env: gym.Env) -> bool:
@@ -76,7 +68,7 @@ def render_environment(env: gym.Env) -> bool:
     """
     try:
         env.render()
-        sleep(0.01)
+        sleep(0.02)
         return True
     except NotImplementedError:
         return False
@@ -99,7 +91,7 @@ def run_environment(
     :param print_observation: should the full observed state be output to std out?
     """
     env.reset()
-    print("Running environment demonstration...")
+    print_header("Running environment demonstration...")
     print("Unique environment information is output to standard out:")
     prev_env_output = None
     for _ in range(steps_count):
@@ -142,13 +134,13 @@ def main() -> None:
         run_environment(environment, steps, render_env, print_observations)
 
     else:
-        print("ERROR: Environment with requested ID not found.")
+        print_error("ERROR: Environment with requested ID not found.")
         regex = re.compile(".*{0}.*".format(env_name), re.IGNORECASE)
         environment_names = [
             spec.id for spec in gym.envs.registry.all() if regex.match(spec.id)
         ]
         if len(environment_names):
-            print("\nPerhaps you were looking for:")
+            print_header("\nPerhaps you were looking for:")
             print(list_to_columns(environment_names))
 
 

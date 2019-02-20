@@ -6,7 +6,6 @@ from gym_demo.demo import (
     get_environment_names,
     get_space_description,
     group_environments,
-    list_to_columns,
     print_environment_description,
     render_environment,
     run_environment,
@@ -32,7 +31,7 @@ def test_get_space_description():
     environment = gym.make("Acrobot-v1")
     description = get_space_description(environment.observation_space)
     assert "Box(6,)" in description
-    assert "Low values: [ -1" in description
+    assert "Low values:\n[ -1" in description
 
 
 def test_print_environment_description(capsys):
@@ -41,15 +40,7 @@ def test_print_environment_description(capsys):
 
     captured = capsys.readouterr()
     assert "Environment: Acrobot-v1" in captured.out
-    assert "Observation Space: Box(6,)" in captured.out
-
-
-def test_list_to_columns():
-    column_output = list_to_columns(["one", "two", "three", "four", "five"])
-    lines = column_output.splitlines()
-    assert len(lines) == 2
-    assert "three" in lines[0]
-    assert "four" in lines[1]
+    assert "Observation Space:\nBox(6,)" in captured.out
 
 
 def test_run_environment(capsys):
