@@ -22,14 +22,21 @@ def get_columns_count_and_width(strings: List[Text]) -> Tuple[int, int]:
     if num_cols > len(strings):
         num_cols = len(strings)
 
+    if num_cols == 0:
+        num_cols = 1
+
     return num_cols, col_width
 
 
 def list_to_columns(strings: List[Text]) -> Text:
     """Prepare multi-column output string from a list of strings."""
+    if len(strings) == 0:
+        return ""
+
     num_cols, col_width = get_columns_count_and_width(strings)
     col_height = math.ceil(len(strings) / num_cols)
     cols = [strings[i : i + col_height] for i in range(0, len(strings), col_height)]
+    num_cols = len(cols)
 
     format_string = "{:<}\n"  # noqa
     for _ in range(num_cols - 1):
