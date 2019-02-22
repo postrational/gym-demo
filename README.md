@@ -15,7 +15,7 @@ start working on it. You will get information about the environments
 *observation space*, *action space* as well as the *rewards* you can
 expect to get and other available information.
 
-[![gym-demo on YouTube](https://img.youtube.com/vi/fHuqpwXBBtg/0.jpg)](https://www.youtube.com/watch?v=fHuqpwXBBtg)
+[![gym-demo on YouTube](https://raw.githubusercontent.com/postrational/gym-demo/master/gym-demo-screenshot.png)](https://www.youtube.com/watch?v=fHuqpwXBBtg)
 
 ### Installation
 
