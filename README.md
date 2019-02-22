@@ -7,7 +7,7 @@
 ##### Explore OpenAI Gym environments
 
 This package provides the `gym-demo` command, which allows you to
-explore the various [Open AI gym ][gym] environments installed on your
+explore the various [Open AI gym][gym] environments installed on your
 system.
 
 This allows you to get a quick overview of an environment before you
@@ -15,9 +15,12 @@ start working on it. You will get information about the environments
 *observation space*, *action space* as well as the *rewards* you can
 expect to get and other available information.
 
+<iframe width="640" height="360" src="https://www.youtube.com/embed/fHuqpwXBBtg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 ### Installation
 
-Install OpenAI Gym and `gym-demo`:
+You can install OpenAI Gym and `gym-demo` using `pip`:
 
 
     $ pip install gym[atari]
@@ -26,9 +29,14 @@ Install OpenAI Gym and `gym-demo`:
 
 ### Usage
 
+Use `gym-demo --help` to display usage information and a list of
+environments installed in your Gym.
+
     $ gym-demo --help
 
-adasd
+Start a demo of an environment to get information about its observation
+and action space and observe the rewards an agent gets during a random
+run.
 
     $ gym-demo SpaceInvaders-ram-v4
     Environment: SpaceInvaders-ram-v4
