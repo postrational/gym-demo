@@ -15,8 +15,7 @@ start working on it. You will get information about the environments
 *observation space*, *action space* as well as the *rewards* you can
 expect to get and other available information.
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/fHuqpwXBBtg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[![gym-demo on YouTube](https://img.youtube.com/vi/fHuqpwXBBtg/0.jpg)](https://www.youtube.com/watch?v=fHuqpwXBBtg)
 
 ### Installation
 
