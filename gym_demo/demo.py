@@ -108,7 +108,7 @@ def run_environment(
             print("Observation: {0}".format(observation))
 
         if done:
-            print("Done after {} steps.".format(step_number + 1))
+            print("Done after {0} steps.".format(step_number + 1))
             break
 
     env.close()
