@@ -94,7 +94,7 @@ def run_environment(
     print_header("Running environment demonstration...")
     print("Unique environment information is output to standard out:")
     prev_env_output = None
-    for _ in range(steps_count):
+    for step_number in range(steps_count):
         observation, reward, done, info = env.step(env.action_space.sample())
 
         if render:
@@ -108,6 +108,7 @@ def run_environment(
             print("Observation: {0}".format(observation))
 
         if done:
+            print("Done after {0} steps.".format(step_number + 1))
             break
 
     env.close()
