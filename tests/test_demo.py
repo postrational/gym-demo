@@ -1,4 +1,5 @@
 """Test suite for gym-demo."""
+import docopt
 import gym
 import pytest
 
@@ -6,6 +7,7 @@ from gym_demo.demo import (
     get_environment_names,
     get_space_description,
     group_environments,
+    main,
     print_environment_description,
     render_environment,
     run_environment,
@@ -66,3 +68,8 @@ def test_render_environment(monkeypatch):
     environment = gym.make("Roulette-v0")
     success = render_environment(environment)
     assert success is False
+
+
+def test_main_no_options():
+    with pytest.raises(docopt.DocoptExit):
+        main()
