@@ -46,9 +46,14 @@ def test_print_environment_description(capsys):
 def test_run_environment(capsys):
     environment = gym.make("Acrobot-v1")
     run_environment(environment, steps_count=1, render=False)
-
     captured = capsys.readouterr()
     assert "Reward: -1.0" in captured.out
+
+    environment = gym.make("CartPole-v1")
+    run_environment(environment, render=False, print_observation=True)
+    captured = capsys.readouterr()
+    assert "Observation: [" in captured.out
+    assert "Done after" in captured.out
 
 
 @pytest.mark.filterwarnings("ignore: numpy.ufunc size changed")
