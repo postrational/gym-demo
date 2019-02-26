@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name="gym-demo",
-    version="0.2.0",
+    version="0.2.1",
     description="Explore OpenAI Gym environments.",
     long_description=open(
         os.path.join(os.path.abspath(os.path.dirname(__file__)), "README.md")
