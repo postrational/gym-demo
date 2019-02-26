@@ -22,10 +22,8 @@ expect to get and other available information.
 
 You can install OpenAI Gym and `gym-demo` using `pip`:
 
-
     $ pip install gym[atari]
     $ pip install gym-demo
-
 
 ### Usage
 
@@ -88,7 +86,7 @@ run.
     Reward: 0.0, Done: False, Info: {'ale.lives': 1}
     Reward: 0.0, Done: True, Info: {'ale.lives': 0}
 
-
+Get mode information about [Open AI gym][gym_site] on their [documentation website][gym_docs].
 
 [gym_docs]: https://gym.openai.com/docs/ "OpenAI Gym Documentation"
 [gym_site]: https://gym.openai.com/ "OpenAI Gym"
