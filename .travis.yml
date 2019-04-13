@@ -7,10 +7,6 @@ matrix:
   include:
   - os: linux
     sudo: false
-    python: '3.4'
-    script: tox -e py34
-  - os: linux
-    sudo: false
     python: '3.5'
     script: tox -e py35
   - os: linux
