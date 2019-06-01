@@ -1,22 +1,14 @@
 language: python
-
-git:
-  depth: false
-
 os: linux
-sudo: false
-
 script: 
   - tox
-
 install:
   - pip install tox
-
+git:
+  depth: false
 branches:
   only:
   - "master"
-
 cache:
   directories:
     - $HOME/.cache/pip
-    - $HOME/.cache/pre-commit
