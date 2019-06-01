@@ -3,24 +3,11 @@ language: python
 git:
   depth: false
 
-matrix:
-  include:
-  - os: linux
-    sudo: false
-    python: '3.5'
-    script: tox -e py35
-  - os: linux
-    sudo: false
-    python: '3.6'
-    script: tox -e py36
-  - os: linux
-    dist: xenial
-    python: '3.7'
-    sudo: true
-    script: tox -e py37
-  - os: osx
-    language: objective-c
-    script: tox -e py36
+os: linux
+sudo: false
+
+script: 
+  - tox
 
 install:
   - pip install tox
