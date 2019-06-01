@@ -13,7 +13,10 @@ COLUMN_MARGIN = 3
 
 
 def get_columns_count_and_width(strings: List[Text]) -> Tuple[int, int]:
-    """Calculate the optimal width and number of columns to display a list of strings.
+    """Calculate how to break a list of strings into multiple columns.
+
+    Calculate the optimal column width and number of columns
+    to display a list of strings on screen.
 
     :param strings: list of strings
     :return: a tuple with the number of columns and column width
