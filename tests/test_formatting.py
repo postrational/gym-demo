@@ -1,6 +1,5 @@
 import shutil
 from collections import namedtuple
-from itertools import product
 
 import pytest
 
@@ -67,10 +66,8 @@ def test_get_columns_count_and_width(monkeypatch, env_group_names):
     assert get_columns_count_and_width(env_group_names) == (3, 25)
 
 
-@pytest.mark.parametrize(
-    "list_size,terminal_size",
-    product(range(len(_GROUP_NAMES)), [5, 20, 40, 80, 160, 500]),
-)
+@pytest.mark.parametrize("list_size", range(len(_GROUP_NAMES)))
+@pytest.mark.parametrize("terminal_size", [5, 20, 40, 80, 160, 500])
 def test_list_to_columns(monkeypatch, env_group_names, list_size, terminal_size):
     monkeypatch.setattr(
         shutil, "get_terminal_size", lambda x: TerminalSize(terminal_size)
