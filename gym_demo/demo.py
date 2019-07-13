@@ -36,7 +36,7 @@ def group_environments(env_names: List[Text]) -> List[Text]:
     for name in names_without_version:
         if not family_names[-1] in name:
             family_names.append(name)
-    return family_names
+    return family_names         
 
 
 def get_space_description(space: gym.Space) -> Text:
