@@ -57,7 +57,7 @@ def print_environment_description(env: gym.Env) -> None:
     print_header("\nAction Space:")
     print(get_space_description(env.action_space))
     if hasattr(env.unwrapped, "get_action_meanings"):
-        print("Action meanings:", env.unwrapped.get_action_meanings())
+        print("Action meanings:", env.unwrapped.get_action_meanings())             
     print("")
 
 
