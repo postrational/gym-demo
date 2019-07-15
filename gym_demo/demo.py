@@ -26,7 +26,7 @@ from gym_demo.formatting import list_to_columns, print_error, print_header
 
 def get_environment_names() -> List[Text]:
     """Return a list of names of registered Open AI Gym environments."""
-    return sorted(spec.id for spec in gym.envs.registry.all())
+    return sorted(spec.id for spec in gym.envs.registry.all())     
 
 
 def group_environments(env_names: List[Text]) -> List[Text]:
