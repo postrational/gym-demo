@@ -33,7 +33,7 @@ before_script:
 
 after_script:
   - pwd
-  - ls
+  - ls -al
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 branches:
