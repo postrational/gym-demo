@@ -19,7 +19,7 @@ matrix:
     python: '3.8'
     script: tox -e py38
   - os: osx
-    osx_image: xcode10.2
+    language: python
     script: tox -e py3
 
 install:
