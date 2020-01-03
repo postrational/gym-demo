@@ -19,8 +19,9 @@ matrix:
     python: '3.8'
     script: tox -e py38
   - os: osx
-    language: objective-c
-    script: tox -e py36
+    osx_image: xcode10.2
+    python: 3.7
+    script: tox -e py37
 
 install:
   - pip install tox
