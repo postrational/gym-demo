@@ -10,7 +10,7 @@ flake8-isort==2.8.0
 flake8-quotes==2.1.1
 flake8-string-format==0.3.0
 mypy==0.761
-pre-commit==2.0.1
+pre-commit==2.1.0
 pydocstyle==5.0.2
 pytest==5.3.5
 pytest-cov==2.8.1
