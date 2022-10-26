@@ -12,7 +12,7 @@ flake8-string-format==0.3.0
 mypy==0.930
 pre-commit==2.16.0
 pydocstyle==6.1.1
-pytest==6.2.5
+pytest==7.2.0
 pytest-cov==3.0.0
 pytest-timeout==2.0.2
 tox==3.24.5
